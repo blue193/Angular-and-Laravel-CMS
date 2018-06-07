@@ -1,0 +1,42 @@
+<section class="card">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="mb-5 sub-menu-css-field-part">
+                    <form #menuTypeContact="ngForm" >
+                        <div class="add">
+                            <!-- <button type="button" class="btn btn-primary mr-2 mb-2" (click)="openModal(content)">Add New Contact Form</button> -->
+                            <!-- <div #content let-c="close" let-d="dismiss">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" style="margin:auto;color:darkolivegreen;">Form Builder</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="d()">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                           
+                                    <div class="col-md-12">
+                                        <div id="stage1" class="build-wrap" style="padding: 100px;"></div>
+                                    </div>
+                               
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" (click)="c()">Close</button>
+                                </div>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div id="stage1" class="build-wrap" style="background: darkgrey; padding: 5px;"></div>
+                            </div>
+                            <div class="col-md-12">
+                                <input id="hidden-info" [(ngModel)]="typeMenuform.contact_form_json" name="contact_form_json" type="hidden" class="form-control hidden-info"
+                                (ngModelChange)="sendMenuTypeContactFormData($event,menuTypeContact)" (blur)="sendMenuTypeContactFormData($event,menuTypeContact)"
+                                />
+                                <!-- <input id="hidden-info" name="contact_form_json" type="text" class="form-control hidden-info" /> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,1 @@
+<img *ngFor="let number of [1,2]" src="/assets/images/theme{{number}}.png" (click)="themePick(number)" [class.active]="theme == number" />

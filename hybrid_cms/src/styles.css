@@ -1,0 +1,83 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-tab-link {
+    margin-bottom: -2px;
+    height: 37px !important;
+    font-family: "PT Sans", sans-serif !important;
+    padding: .6em 1em !important;
+    padding-right: 50px !important;
+    text-align: left !important;
+    display: inline-block !important;
+    border: none;
+    border-bottom: 3px solid transparent;
+    min-width: inherit !important;
+}
+.mat-tab-link:hover {
+    border-bottom-color: #b8beca !important;
+    opacity: 1 !important;
+}
+.mat-tab-link:focus {
+    background-color: white !important;
+    color: #464a4c !important;
+}
+.mat-tab-link i {
+    margin-right: 5px;
+}
+
+.mat-tab-links {
+    border-bottom: 2px solid #e4e9f0;
+}
+
+.mat-ink-bar {
+    visibility: hidden !important;
+}
+
+.mat-tab-label-active {
+    background: white;
+    color: #464a4c !important;
+    background-color: #fff;
+    border-bottom-color: #0190fe !important;
+    opacity: 1 !important;
+}
+.mat-tab-label-active:hover {
+    border-bottom-color: #0190fe !important;
+}
+
+app-rewards .mat-tab-nav-bar {
+    background: white;
+    border-bottom: 0px solid rgba(0,0,0,0);
+}
+app-bonus .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-redemption .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-checkin .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-staff .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-member .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-modified-transaction .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+app-reward-settings .card {
+    border: 0px solid rgba(0,0,0,0); 
+}
+
+.mat-ripple-element {
+    left: 0px !important;
+    top: 0px !important;
+    height: 0px !important;
+    width: 0px !important;
+    transition-duration: 0ms !important;
+    transform: scale(0) !important;
+}
+
+
+
+

@@ -1,0 +1,1020 @@
+<style>
+	.frame {
+    width: 100%;
+    height: 97%;
+    border: 0;
+    /* -ms-transform: scale(0.25);
+    -moz-transform: scale(0.25);
+    -o-transform: scale(0.25);
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);
+    
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0; */
+	}
+
+	.loading {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.loading .bullet {
+		position: absolute;
+		padding: 5px;
+		border-radius: 50%;
+		background: #65a3ff;
+		-webkit-animation: animIn 1s ease-in-out 0s infinite;
+		animation: animIn 1s ease-in-out 0s infinite;
+	}
+	.loading .bullet:nth-child(1) {
+		-webkit-animation-delay: 0s;
+		animation-delay: 0s;
+	}
+	.loading .bullet:nth-child(2) {
+		-webkit-animation-delay: 0.15s;
+		animation-delay: 0.15s;
+	}
+	.loading .bullet:nth-child(3) {
+		-webkit-animation-delay: 0.3s;
+		animation-delay: 0.3s;
+	}
+	.loading .bullet:nth-child(4) {
+		-webkit-animation-delay: 0.45s;
+		animation-delay: 0.45s;
+	}
+	@-webkit-keyframes animIn {
+		0% {
+			-webkit-transform: translateX(-100px);
+			transform: translateX(-100px);
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			-webkit-transform: translateX(100px);
+			transform: translateX(100px);
+			opacity: 0;
+		}
+	}
+	@keyframes animIn {
+		0% {
+			-webkit-transform: translateX(-100px);
+			transform: translateX(-100px);
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			-webkit-transform: translateX(100px);
+			transform: translateX(100px);
+			opacity: 0;
+		}
+	}
+
+
+
+</style>
+<section class="card">
+
+	<div class="card-header">
+		<span class="cat__core__title">
+			<strong>Design</strong>
+		</span>
+
+	</div>
+	<!-- <div class="card-block" >
+		<div>
+
+		</div>
+	</div> -->
+	<div class="card-block">
+		<div class="row" [hidden]=!domloaded>
+			<div class="cat__app-loader" style="position: relative; margin-top: 180px;
+			margin-bottom: 180px;">
+				<div></div>
+			</div>
+		</div>
+		<div class="row" [hidden]=domloaded>
+			<div class="col-lg-12">
+				<div class="mb-5">
+					<div class="nav-tabs-horizontal">
+
+						<ul class="nav nav-tabs mb-4" role="tablist">
+							<li class="nav-item col-md-4 padding-remove" (click)="toggleMenuGeneralDefault()">
+								<a id = "homescreentab" class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#homescreenform" role="tab">
+									<i class="icmn-home"></i>
+									General
+								</a>
+							</li>
+							<li class="nav-item col-md-4 padding-remove" (click)="toggleMenuHeaderDefault()">
+								<a id = "menuconfigurationtab" class="nav-link" href="javascript: void(0);" data-toggle="tab" data-target="#menuconfigurationform" role="tab">
+									<i class="icmn-database"></i>
+									Menu
+								</a>
+							</li>
+						</ul>
+
+						<div class="tab-content">
+
+							<div class="tab-pane active" id="homescreenform" role="tabcard">
+								<div class="row">
+
+									<div class="col-md-8">
+
+										<!-- <div class="col-lg-12">
+
+											<form #menuLocationForm="ngForm" (ngSubmit)="onMenuLocationTypeSubmit(menuLocationForm)" [formGroup]="menuLocationType">
+
+												<div class="form-group row">
+													<label class="col-md-3 col-form-label" for="menu_location_type">Menu Type</label>
+													<div class="col-md-8">
+														<select class="form-control" id="menu_location_type" name="menu_location_type" [formControl]="menuLocationType.controls['menu_location_type']">
+															<option value="" selected>Select Type</option>
+															<option *ngFor="let menu_larray of menuLocationArray;let mlIndex = index" value="{{menu_larray.key}}"
+															[selected]="menu_larray.key == menu_location_type">{{menu_larray.name}}</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<div class="col-md-12">
+														<button type="submit" [disabled]="!menuLocationType.valid" class="btn btn-primary">Save changes</button>
+													</div>
+												</div>
+											</form>
+
+											<hr class="custom_hr">
+										</div> -->
+
+										<!-- <div class="col-md-8" *ngIf="cssData.type == 'font'">
+
+											<select class="form-control" id="{{cssData.key}}" name="{{cssData.key}}"
+											[(ngModel)]="typeMenuform.css_string_json[i]['value']"
+											(ngModelChange)="sendMenuTypeVideoData($event)"
+											>
+												<option value="" selected="">Select Font Name</option>
+												<option *ngFor="let fontType of subMenuFontTypeArray" [ngValue]="fontType.key" [selected]="fontType.key == 1">{{fontType.name}}</option>
+											</select>
+										</div> -->
+
+										<form #generalForm="ngForm">
+
+											<div>
+												<div class="form-group row">
+													
+													<label class="col-md-5 col-form-label" for="l0">Header Icon
+															<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Icon height and width must be in between 100 to 500."></i>
+															<!-- <span class="mandatory-field">*</span> -->
+													</label>
+													<div class="col-md-3">
+														<div class="form-group header-icon-dropify">
+															<input type="file"
+															class="dropify"
+															id="app_iconHeader"
+															name="app_icon"
+															(change)="appMainHeaderIconFileChange($event)"
+															data-height="140"
+															data-max-file-size="10M"
+															data-allowed-file-extensions="png jpeg jpg"
+															data-min-width="24" data-max-width="6000"
+															data-min-height="24" data-max-height="6000"
+															/>
+
+															<input type="hidden" name="fileHidden" />
+															<small *ngIf="is_file" class="form-message text-danger">You must include a App Icon.</small>
+														</div>
+													</div>
+												</div>
+												 
+												<div class="form-group row">
+													<label class="col-md-4 col-form-label" for="menu_location_type">Menu Type</label>
+													<div class="col-md-6">
+														<!-- <select class="form-control" id="menu_location_type" name="menu_location_type" [(ngModel)]="typeMenuform.sel_menu_type" (ngModelChange)="sendMenuTypeData($event)">
+															
+															<option *ngFor="let menu_larray of menuLocationArray" [ngValue]="menu_larray.key">{{menu_larray.name}}</option>
+														</select> -->
+														<!-- <div ngbRadioGroup name="radioBasic" class = "btn-group" data-toggle = "buttons"> -->
+															<div  class = "btn-group" style = "width:100%">
+																<label [ngClass] = "menu_larray.key == typeMenuform.sel_menu_type?'btn-primary':'white'" *ngFor="let menu_larray of menuLocationArray" class="btn " (click) = "sendMenuTypeData(menu_larray.key)" style="width: 50%">
+																		{{menu_larray.name}}
+																</label>
+															</div>
+														<!-- </div> -->
+														
+													</div>
+												</div>
+
+
+												<div *ngFor="let cssData of menuiconArrayCss; let i = index " class="clearfix">
+
+													<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'backgroundColorMenu'">
+
+														<label class="col-md-4 col-form-label" for="l0">
+															{{cssData.label}}
+														</label>
+
+														<div class="col-md-3">
+															<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+															    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'backgroundColorMenu');"
+															    [readonly]="true" />
+														</div>
+
+														<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+															Hex: {{cssData.value}}
+														</label>
+
+														<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+															Hex: #000000
+														</label>
+													</div>
+												</div>
+
+												<div *ngFor="let cssData of headerArrayCss; let i = index " class="clearfix">
+													<div class="form-group row" *ngIf="cssData.type == 'size' && cssData.key != 'height' ">
+														<label class="col-md-4 col-form-label" for="l0">
+															{{cssData.label}}
+														</label>
+
+														<div class="col-md-3">
+															<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="headerArrayCss[i]['value']" class="form-control" type="text" appOnlyNum/>
+
+															<!-- (ngModelChange)="generalCssChange(i,headerArrayCss[i]['value'],cssData.key)" -->
+
+														</div>
+														<div class="col-md-3">
+															<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+														</div>
+													</div>
+													<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'background color'">
+														<label class="col-md-4 col-form-label" for="l0">
+															{{cssData.label}}
+														</label>
+														<div class="col-md-3">
+															<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+															    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'backgroundColorHeader');"
+															    [readonly]="true" />
+														</div>
+														<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+															Hex: {{cssData.value}}
+														</label>
+														<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+															Hex: #000000
+														</label>
+													</div>
+													<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'background color border'">
+														<label class="col-md-4 col-form-label" for="l0">
+															{{cssData.label}}
+														</label>
+														<!--2018.02.20 gjc-->
+														<div class="col-md-3">
+															<input type="text"
+															id="{{cssData.key}}"
+															name="{{cssData.key}}"
+															class="form-control cursor_pointer_input"
+															type="text"
+															[style.background]="headarr_border_rgbaText"
+															[(colorPicker)]="cssData.value"
+															(colorPickerChange)="headarr_border_rgbaText=genralMenuOnChangefontcolor(i,$event,'headerbordercolor');"
+															[cpAlphaChannel]="'hex8'"
+															[cpPosition]="'bottom'"/>
+														</div>
+														<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+															Hex: {{cssData.value}}
+														</label>
+														<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+															Hex: #000000
+														</label>
+													</div>
+												</div>
+
+												<div class="card-header card_custome_collapsed " style="    padding-left: 0px;" role="tab" id="headingOne" data-toggle="collapse"
+												    aria-expanded="true" (click)="subMenuCollapseOpen()">
+													<div class="card-title">
+														<span class="accordion-indicator pull-right">
+
+															<i *ngIf='confirmFlag == false' class="plus fa fa-plus"></i>
+
+															<i *ngIf='confirmFlag == true' class="minus fa fa-minus"></i>
+														</span>
+														<a>Advanced Options</a>
+													</div>
+												</div>
+												<div *ngIf=" confirmFlag == true">
+													<div style="padding-top: 10px;">
+														<div *ngFor="let cssData of statusbarArrayCss; let i = index " class="clearfix">
+															<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'background color'">
+																<label class="col-md-4 col-form-label" for="l0">
+																	{{cssData.label}}
+																</label>
+																<div class="col-md-3">
+																	<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+																	    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'statusbarcolor');"
+																	    [readonly]="true" />
+																</div>
+
+																<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">Hex: {{cssData.value}}</label>
+																<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+																	Hex: #000000
+																</label>
+															</div>
+														</div>
+														<div *ngFor="let cssData of headerArrayCss; let i = index " class="clearfix">
+															<div class="form-group row" *ngIf="cssData.type == 'size' && cssData.key == 'height' ">
+																<label class="col-md-4 col-form-label" for="l0">
+																	{{cssData.label}}
+																</label>
+
+																<div class="col-md-3">
+																	<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="headerArrayCss[i]['value']" class="form-control" type="text" appOnlyNum/>
+										<!-- (ngModelChange)="generalCssChange(i,headerArrayCss[i]['value'],cssData.key)" -->
+																</div>
+																<div class="col-md-3">
+																	<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div style="padding-top: 10px;">
+													<button #generalBtnSave (click)="homescreenSubmit()" class="btn btn-primary mr-3">Save Design</button>
+												</div>
+											</div>
+										</form>
+									</div>
+
+									<div class="col-md-4 custom_tabpanel_phone">
+										
+									</div>
+
+								</div>
+							</div>
+
+							<div class="tab-pane" id="menuconfigurationform" role="tabcard">
+								<div class="row">
+
+									<div class="col-md-8" *ngIf=" menuType == 1 ">
+										<div class="form-group row">
+											<label class="col-md-12 col-form-label" for="l0">
+												<h4 class="text-uppercase">
+													<strong>Menu Design</strong>
+												</h4>
+											</label>
+										</div>
+
+
+										<form #menuForm="ngForm">
+											<div class="form-group row">
+												<label class="col-md-5 col-form-label" for="l0">Menu Header Icon
+													<i class="fa fa-question-circle" data-toggle="tooltip" data-placement="right" title="Icon height and width must be in between 100 to 500."></i>
+													<!-- <span class="mandatory-field">*</span> -->
+												</label>
+												<div class="col-md-3">
+													<div class="form-group menu-header-icon-dropify">
+														<input type="file"
+														class="dropify"
+														id="app_iconSide"
+														name="app_icon"
+														data-height="140"
+														data-allowed-file-extensions="png jpeg jpg"
+														data-max-file-size="10M"
+														data-min-width="24" data-max-width="6000"
+														data-min-height="24" data-max-height="6000"
+														(change)="appHeaderIconFileChange($event)"
+														/>
+
+														<input type="hidden" name="fileHidden" />
+														<small *ngIf="is_file" class="form-message text-danger">You must include a App Icon.</small>
+													</div>
+												</div>
+											</div>
+
+											<!-- <div class="form-group row">
+												<label class="col-md-4 col-form-label">SideMenu Header Image </label>
+												<div class="col-md-3">
+													<div class="form-group">
+														<input type="file" data-max-file-size="3M" class="dropify" id="app_icon" name="app_icon" (change)="appHeaderIconFileChange($event)"
+														    data-allowed-file-extensions="png jpeg jpg" data-height="140" />
+
+														<input type="hidden" name="fileHidden" />
+														<small *ngIf="is_file" class="form-message text-danger">You must include a App Icon.</small>
+													</div>
+												</div>
+											</div> -->
+
+											<!-- <div class="form-group row">
+												<label class="col-md-4 col-form-label">Main Header Image </label>
+												<div class="col-md-3">
+													<div class="form-group">
+														<input type="file" data-max-file-size="3M" class="dropify" id="app_icon" name="app_icon" (change)="appMainHeaderIconFileChange($event)"
+														    data-allowed-file-extensions="png jpeg jpg" data-height="140" />
+
+														<input type="hidden" name="fileHidden" />
+														<small *ngIf="is_file" class="form-message text-danger">You must include a App Icon.</small>
+													</div>
+												</div>
+											</div> -->
+											<div *ngFor="let cssData of menuArrayCss; let i = index " class="clearfix">
+
+												<div class="form-group row" *ngIf="cssData.type == 'size' &&
+											cssData.label != 'Padding Left' && cssData.label != 'Padding Top'
+											">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="menuArrayCss[i]['value']" (ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'], cssData.key,menuForm)"
+														    class="form-control" type="text" appOnlyNum/>
+													</div>
+													<div class="col-md-3">
+														<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+													</div>
+												</div>
+												<div class="form-group row" *ngIf="cssData.key == 'lineDividerColor' ">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=sendMenuTypeVideoData(i,$event,cssData.key,menuForm);"
+														    (ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'],'selectedColor',menuForm)" [readonly]="true"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'selectedColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<!-- 2018.02.20 gjc -->
+													<div class="col-md-3">
+														<input type="text"
+														name="{{cssData.key}}"
+														id="{{cssData.key}}"
+														class="form-control cursor_pointer_input"
+														[style.background]="menuarr_selected_rgbaText"
+														[(colorPicker)]="cssData.value"
+														[cpAlphaChannel]="'hex8'"
+														[cpPosition]="'bottom'"
+														(colorPickerChange)="menuarr_selected_rgbaText=sendMenuTypeVideoData(i,$event,cssData.key,menuForm);"
+														(ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'],cssData.key,menuForm)"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'selectedFontColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=sendMenuTypeVideoData(i,$event,cssData.key,menuForm);"
+														    (ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'],cssData.key,menuForm)" [readonly]="true"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'nonSelectedColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=sendMenuTypeVideoData(i,$event,cssData.key,menuForm);"
+														    (ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'],cssData.key,menuForm)" [readonly]="true"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'nonSelectedFontColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<!-- 2018.02.20 gjc -->
+													<div class="col-md-3">
+														<input type="text"
+														name="{{cssData.key}}"
+														id="{{cssData.key}}"
+														class="form-control cursor_pointer_input"
+														[style.background]="nonselected_font_rgbaText"
+														[(colorPicker)]="cssData.value"
+														[cpAlphaChannel]="'hex8'"
+														[cpPosition]="'bottom'"
+														(colorPickerChange)="nonselected_font_rgbaText=sendMenuTypeVideoData(i,$event,cssData.key,menuForm);"
+														(ngModelChange)="sendMenuTypeVideoData(i,menuArrayCss[i]['value'],cssData.key,menuForm)"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'sidemenubackcolor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=onChangebackgroundcolor(i,$event,'backgroundclr');sendMenuTypeVideoData($event,i)"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.key == 'borderBottom'">
+													<label class="col-md-4 col-form-label" for="l0">
+														Header Separator Height
+													</label>
+													<div class="col-md-3">
+														<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="headerBorderSize" (ngModelChange)="onChangebackgroundcolor(i,headerBorderSize, 'borderBottomSize',menuForm)"
+														    class="form-control" type="text" appOnlyNum/>
+													</div>
+													<div class="col-md-3">
+														<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+													</div>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'borderBottom'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="subMenuHeaderBorderColor"
+														    [(colorPicker)]="subMenuHeaderBorderColor" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=onChangebackgroundcolor(i,$event,'borderBottom');sendMenuTypeVideoData(i,$event,null,menuForm)"
+														    [readonly]="true" />
+
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{subMenuHeaderBorderColor}}
+													</label>
+
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'bordercolor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text"
+														name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=onChangebackgroundcolor(i,$event,'backgroundclr');sendMenuTypeVideoData($event,i)"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'fontColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" id="{{cssData.key}}" name="{{cssData.key}}" class="form-control cursor_pointer_input" type="text" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=onChangefontcolor($event);"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-4 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'font'">
+
+													<label class="col-md-4 col-form-label" for="l0">
+														Font Style
+													</label>
+													<div class="col-md-6">
+														<select name="fontFamily" [(ngModel)]="fontFamily" class="form-control show-tick" id="menuSelectId" data-selected-text-format="count"
+														    data-live-search="true" (change)="selectMenuFun(i,$event,'fonttype')">
+															<option *ngFor="let data of fontFamilyData; let i = index " value="{{data.value}}" [selected]=" data.value == menuFontFamily ">
+																{{data.name}}
+															</option>
+														</select>
+													</div>
+												</div>
+
+											</div>
+										</form>
+
+										<div class="form-group row">
+											<label class="col-md-12 col-form-label" for="l0">
+												<h4 class="text-uppercase">
+													<strong>Submenu Design</strong>
+												</h4>
+											</label>
+										</div>
+										<form #submenuForm="ngForm">
+											<div *ngFor="let cssData of submenuArrayCss; let i = index " class="clearfix">
+												<div class="form-group row" *ngIf="cssData.type == 'size'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="submenuArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,submenuArrayCss[i]['value'],cssData.key)"
+														    class="form-control" type="text" appOnlyNum/>
+													</div>
+													<div class="col-md-3">
+														<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+													</div>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'borderColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuBorderChange(i,$event,cssData.key,submenuForm);"
+														    (ngModelChange)="sendMenuTypeVideoData(i,submenuArrayCss[i]['value'],'selectedColor',submenuForm)" [readonly]="true"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<!-- <div class="form-group row" *ngIf="cssData.type == 'paddingleft'">
+												<label class="col-md-4 col-form-label" for="l0">
+													{{cssData.label}}
+												</label>
+												<div class="col-md-3">
+													<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="submenuArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,submenuArrayCss[i]['value'],cssData.key)"
+													    class="form-control" type="text" />
+												</div>
+												<div class="col-md-3">
+
+													<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+												</div>
+											</div>
+											<div class="form-group row" *ngIf="cssData.type == 'paddingtop'">
+												<label class="col-md-4 col-form-label" for="l0">
+													{{cssData.label}}
+												</label>
+												<div class="col-md-3">
+													<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="submenuArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,submenuArrayCss[i]['value'],cssData.key)"
+													    class="form-control" type="text" />
+												</div>
+												<div class="col-md-3">
+													<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+												</div>
+											</div> -->
+												<!-- <div class="form-group row" *ngIf="cssData.type == 'margintop'">
+												<label class="col-md-4 col-form-label" for="l0">
+													{{cssData.label}}
+												</label>
+												<div class="col-md-3">
+													<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="submenuArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,submenuArrayCss[i]['value'],cssData.key)"
+													    class="form-control" type="text" />
+												</div>
+												<div class="col-md-3">
+													<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+												</div>
+											</div> -->
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'selectedColor'">
+													<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" placeholder="{{cssData.label}}"
+													    [(ngModel)]="submenuArrayCss[i]['value']" [style.background]="cssData.value" [(colorPicker)]="cssData.value"
+													    [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuOnChangefontcolor($event);submenuModelChange($event,i)"
+													    (ngModelChange)="submenuModelChange(i,submenuArrayCss[i]['value'],'selectedColor',submenuForm)" [readonly]="true"
+													/>
+												</div>
+												<div class="col-md-8" *ngIf="cssData.type == 'color' && cssData.key == 'lineDividerColor'">
+
+													<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" placeholder="{{cssData.label}}" class="form-control cursor_pointer_input"
+													    [(ngModel)]="submenuArrayCss[i]['value']" [style.background]="cssData.value" [(colorPicker)]="cssData.value"
+													    [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuOnChangefontcolor($event);submenuModelChange($event,i)"
+													    [readonly]="true" />
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'backgroundColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuOnChangebackgroundcolor(i,$event,'backgroundclr');submenuModelChange($event,i)"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'color'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuOnChangefontcolor(i,$event,backgroundColor);"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'font'">
+
+													<label class="col-md-4 col-form-label" for="l0">
+														Font Style
+													</label>
+													<div class="col-md-6">
+														<select name="FontFamily" [(ngModel)]='FontFamily' class="form-control show-tick" id="submenuSelect" data-selected-text-format="count"
+														    data-live-search="true" (change)="submenuSelectMenuFun(i,$event,'fonttype')">
+															<option *ngFor="let data of fontFamilyData; let i = index " value="{{data.value}}" [selected]="data.value == submenuFontFamily ">
+																{{data.name}}
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+
+										</form>
+
+										<div class="form-group row">
+											<label class="col-md-12 col-form-label" for="l0">
+												<h4 class="text-uppercase">
+													<strong>Arrow Design</strong>
+												</h4>
+											</label>
+										</div>
+										<form #arrowmenuForm="ngForm">
+											<div *ngFor="let cssData of arrowArrayCss; let i = index " class="clearfix">
+
+												<!-- <div class="form-group row" *ngIf="cssData.type == 'size'">
+												<label class="col-md-4 col-form-label" for="l0">
+													{{cssData.label}}
+												</label>
+												<div class="col-md-3">
+													<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="arrowArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,arrowArrayCss[i]['value'],cssData.key)"
+													    class="form-control" type="text" />
+												</div>
+												<div class="col-md-3">
+													<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+												</div>
+											</div> -->
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'arrowColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'arrowColor',arrowmenuForm);"
+														    [readonly]="true" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<!--<div class="form-group row" *ngIf="cssData.type == 'position'">
+
+												<label class="col-md-4 col-form-label" for="l0">
+													Font Style
+												</label>
+												<div class="col-md-6">
+													<select class="form-control selectpicker show-tick" id="l13" data-selected-text-format="count" data-live-search="true" (change)="selectMenuFun(i,$event,'position')">
+														<option *ngFor="let data of positionArray; let i = index " value="{{data.name}}" [selected]="data.name == positionData ">
+															{{data.name}}
+														</option>
+													</select>
+												</div>
+											</div> -->
+
+
+											<!--<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'backarrowcolor'">
+												<label class="col-md-4 col-form-label" for="l0">
+													{{cssData.label}}
+												</label>
+												<div class="col-md-3">
+													<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" [style.background]="cssData.value" [(colorPicker)]="cssData.value"
+														[cpOutputFormat]="hex" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'backarrowcolor');"
+														class="form-control" />
+												</div>
+												<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+													Hex: {{cssData.value}}
+												</label>
+												<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+													Hex: #000
+												</label>
+											</div> -->
+											<!-- 2018-2-9 -->
+												<!-- <div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'toggleouter'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" [style.background]="cssData.value" [(colorPicker)]="cssData.value"
+														    [cpOutputFormat]="hex" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'toggleouter');"
+														    class="form-control" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000
+													</label>
+												</div>
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'toggleinner'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" [style.background]="cssData.value" [(colorPicker)]="cssData.value"
+														    [cpOutputFormat]="hex" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=genralMenuOnChangefontcolor(i,$event,'toggleinner');"
+														    class="form-control" />
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000
+													</label>
+												</div> -->
+											</div>
+											<div>
+												<button #menuBtnSave (click)="sideMenuCssSubmit()" class="btn btn-primary mr-3">Save Design</button>
+											</div>
+										</form>
+
+									</div>
+
+									<div class="col-md-8" *ngIf=" menuType == 2 ">
+										<div class="form-group row">
+											<label class="col-md-12 col-form-label" for="l0">
+												<h4 class="text-uppercase">
+													<strong>Tab Design</strong>
+												</h4>
+											</label>
+										</div>
+										<form #tabmenuForm="ngForm">
+											<div *ngFor="let cssData of tabArrayCss; let i = index " class="clearfix">
+
+												<div class="form-group row" *ngIf="cssData.type == 'size'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input id="{{cssData.key}}" name="{{cssData.key}}" [(ngModel)]="tabArrayCss[i]['value']" (ngModelChange)="submenuModelChange(i,tabArrayCss[i]['value'],cssData.key)"
+														    class="form-control" type="text" />
+													</div>
+													<div class="col-md-3">
+														<input class="form-control" value="px" name="field_size_px_{{i}}" id="field_size_px_{{i}}" [disabled]="true" type="text">
+													</div>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'font'">
+
+													<label class="col-md-4 col-form-label" for="l0">
+														Font Style
+													</label>
+													<div class="col-md-6">
+														<select name="FontFamily" [(ngModel)]="FontFamily" class="form-control selectpicker show-tick" id="l13" data-selected-text-format="count"
+														    data-live-search="true" (change)="submenuSelectMenuFun(i,$event,'fonttypeTab')">
+															<option *ngFor="let data of fontFamilyData; let i = index " value="{{data.value}}" [selected]="data == fontDataTab ">
+																{{data.name}}
+															</option>
+														</select>
+													</div>
+
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'backgroundColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<div class="col-md-3">
+														<input type="text" name="{{cssData.key}}" id="{{cssData.key}}" class="form-control cursor_pointer_input" [style.background]="cssData.value"
+														    [(colorPicker)]="cssData.value" [cpOutputFormat]="'hex'" [cpPosition]="'bottom'" (colorPickerChange)="rgbaText=submenuBorderChange(i,$event,'fontselectedColor', tabmenuForm);"
+														    (ngModelChange)="sendMenuTypeVideoData(i,tabArrayCss[i]['value'],'fontselectedColor',tabmenuForm)" [readonly]="true"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+
+												<div class="form-group row" *ngIf="cssData.type == 'color' && cssData.key == 'borderColor'">
+													<label class="col-md-4 col-form-label" for="l0">
+														{{cssData.label}}
+													</label>
+													<!-- 2018.02.20 gjc -->
+													<div class="col-md-3">
+														<input type="text"
+														name="{{cssData.key}}"
+														id="{{cssData.key}}"
+														class="form-control cursor_pointer_input"
+														[style.background]="tabarr_border_rgbaText"
+														[(colorPicker)]="cssData.value"
+														[cpAlphaChannel]="'hex8'"
+														[cpPosition]="'bottom'"
+														(colorPickerChange)="tabarr_border_rgbaText=submenuBorderChange(i,$event,'separatorColor', tabmenuForm);"
+														(ngModelChange)="sendMenuTypeVideoData(i,tabArrayCss[i]['value'],'selectedColorTab',tabmenuForm)"
+														/>
+													</div>
+													<label *ngIf="cssData.value" class="col-md-3 col-form-label" for="l0">
+														Hex: {{cssData.value}}
+													</label>
+													<label *ngIf="cssData.value == ''" class="col-md-3 col-form-label" for="l0">
+														Hex: #000000
+													</label>
+												</div>
+											</div>
+
+
+											<div *ngFor="let menuData of menuIconData; let i = index ">
+												<div class="form-group tab_label row" *ngFor="let data of currentMenuJson; let j = index ">
+
+													<label class="col-md-4">{{ data.menu_name }}</label>
+
+													<select id="gyr_ind{{j}}" name="gyr_ind" class="select2 form-control col-md-4" style=" width:100%;">
+
+
+														<option *ngFor="let fontData of menuData.iconData; let k = index " value="{{fontData.icon_name}}" id="{{fontData.icon_name}}"
+															[selected]=" fontData.icon_name == selectedArray[j] "
+															>{{fontData.name}}</option>
+
+
+													</select>
+
+												</div>
+											</div>
+
+
+											<div>
+												<button #menuBtnSave (click)="sideMenuCssSubmit()" class="btn btn-primary mr-3">Save Design</button>
+											</div>
+										</form>
+									</div>
+
+									<div class="col-md-4 custom_tabpanel_phone">
+										
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

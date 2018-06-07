@@ -1,0 +1,1 @@
+c:/xampp/php/php.exe artisan serve --host=192.168.100.112 --port=1204

@@ -1,0 +1,16 @@
+<section class="card">
+
+	<div class="card-block">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="mb-5 sub-menu-css-field-part">
+					<form>
+						<content-theme-picker (change)="themeChange($event)" [theme]="pickedTheme">
+						</content-theme-picker>
+						<content-theme-editor [theme]="pickedTheme"></content-theme-editor>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
